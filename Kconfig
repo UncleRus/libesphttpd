@@ -26,4 +26,12 @@ config ESPHTTPD_USEYUICOMPRESSOR
 	help
 		Compress JS and CSS files with the YIU compressor. Needs YUI installed.
 
+config ESPHTTPD_ESPFS_GZIP_COMPRESSION
+	bool "mkespfsimage: Support of gzip compressed ESPFS images"
+	default n
+
+config ESPHTTPD_ESPFS_HEATSHRINK
+	bool "mkespfsimage: Support of heatshrinked ESPFS images"
+	default y
+
 endmenu

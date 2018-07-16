@@ -18,12 +18,18 @@ typedef RtosConnType* ConnTypePtr;
 typedef TimerHandle_t HttpdPlatTimerHandle;
 
 #ifndef ESP32 //esp32 does not need this because it can map flash into D-port memory
+
 #define httpd_printf(fmt, ...) do {	\
 	static const char flash_str[] ICACHE_RODATA_ATTR STORE_ATTR = fmt;	\
 	printf(flash_str, ##__VA_ARGS__);	\
 	} while(0)
+
 #else
-#define httpd_printf(fmt, ...) printf(fmt, ##__VA_ARGS__)
+
+//#define httpd_printf(fmt, ...) printf(fmt, ##__VA_ARGS__)
+#include <esp_log.h>
+#define httpd_printf(fmt, ...) ESP_LOGI("httpd", fmt, ##__VA_ARGS__)
+
 #endif
 #ifdef ESP32
 #define ICACHE_FLASH_ATTR
@@ -50,6 +56,4 @@ typedef *HttpdPlatTimer HttpdPlatTimerHandle;
 #define httpd_printf(format, ...) os_printf(format, ##__VA_ARGS__)
 #endif
 
-
-
-#endif
+#endif /* PLATFORM_H */

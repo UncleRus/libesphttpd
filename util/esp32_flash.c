@@ -68,7 +68,7 @@ int esp32flashGetUpdateMem(uint32_t *loc, uint32_t *size) {
 
 int esp32flashSetOtaAsCurrentImage() {
 	const esp_partition_t* otaselpart=esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_OTA, NULL);
-	int selectedPart=getOtaSel();
+	//int selectedPart=getOtaSel();
 	int selSect=-1;
 	ota_select sa1,sa2, newsa;
 	spi_flash_read((uint32)otaselpart->address, (uint32_t*)&sa1, sizeof(ota_select));
